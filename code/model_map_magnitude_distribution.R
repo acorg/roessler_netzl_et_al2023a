@@ -110,7 +110,8 @@ model_map <- function(map,
     seed = 100,
     init = list(
       stan_init
-    )
+    ),
+    iter = 3000
   )
   
   
@@ -125,6 +126,7 @@ model_map <- function(map,
     ),
     chains = 4,
     parallel_chains = 4,
+    iter_sampling = 3000,
     refresh = 500 # print update every 500 iters
   )
   
@@ -260,6 +262,7 @@ dilutionStepsize(merged_map) <- 0
 # Model first magnitude effects only
 magnitude_og <- model_map(merged_map, sigma_prior_sr_effect = 1e-3, sigma_prior_dataset_bias = 1e-3, sigma_prior_dataset_magnitude = 10) 
 
+
 saveRDS(
   object = magnitude_og$mapdata,
   "data/titer_data/merged_map_stan_sampled_magnitude_imputed.rds"
@@ -327,7 +330,6 @@ for(r in 1:nrow(ag_means)){
 
 sr_effects <- levels(sr_name)
 dataset_magnitude <- sr_extra_levels
-
 
 plot_distribution_and_optim <- function(models, target_var = "dataset_magnitude|sr_effect|ag_means"){
   
@@ -459,3 +461,4 @@ ggsave("som/stan_model_effects/effect_distribution_magnitude.png", plots, width 
 plots <- plot_all_distributions(sr_og)
 ggsave("som/stan_model_effects/effect_distribution_serum.png", plots, width = 12, height = 14, dpi = 300)
 
+shinystan::launch_shinystan(sr_og$fit)
