@@ -2,7 +2,7 @@
 This repository holds the code for the species comparison between human and hamster SARS-CoV-2 neutralisation data, published by Rössler, Netzl et al. Please cite the original publication if any data or code from this repository is used. 
 
 The repository's DOI
-[![DOI](https://sandbox.zenodo.org/badge/712555489.svg)](https://zenodo-rdm-qa.web.cern.ch/doi/10.5281/zenodo.10003229)
+[![DOI](https://zenodo.org/badge/712555489.svg)](https://zenodo.org/doi/10.5281/zenodo.10651314)
 was created with Zenodo (https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content)
 
 Raw data can be found in the `data` directory. The code for the analyses shown in the main manuscript can be found in the `code` directory. To obtain a titer table for antigenic map construction, execute the `excel_to_titertable.R` script. To construct maps execute the `make_map.R` script. The STAN model is stored in the `model` directory and executing the `code/model_map_magnitude_distribution.R` script saves the sampled and optimized serum and magnitude effects shown in the main manuscript and SOM.
