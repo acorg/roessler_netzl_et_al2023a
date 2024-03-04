@@ -19,12 +19,12 @@ both <- readRDS("data/titer_data/merged_map_stan_sampled_both_imputed.rds") %>%
 
 sr_org <- sr_effect %>%
   mutate(dataset_magnitude = org_effect$dataset_magnitude,
-         sr_effect = sr_effect + dataset_magnitude,
+         sr_effect = sr_effect - dataset_magnitude,
          Model = "Serum with organism reactivity")
 
 pal_npg(palette = c("nrc"), alpha = 1)
 # combine all
-combo <- rbind(sr_effect, org_effect, both, sr_org) %>%
+combo <- rbind(sr_effect, org_effect, both) %>% #, sr_org) %>%
   mutate(sr_name = gsub("Anc. virus conv._|BA.1 conv._|BA.5 conv._|delta conv._|D614G conv._", "", sr_name),
          sr_name = gsub(" 1| 2| 3| 4|convalescent", " conv.", sr_name),
          sr_name = gsub("Hamster Sera \\(D21pi\\) Animal", "", sr_name),
@@ -63,7 +63,7 @@ combo %>%
   scale_fill_npg() +
   scale_y_continuous(name = "Organism reactivity",
                      label = function(x) round(2^x, 2),
-                     limits = c(-2.5,0.5),
+                     limits = c(-2.5,0.7),
                      breaks = c(-5:8)) + 
   xlab("Organism") -> p
 
@@ -83,11 +83,12 @@ combo %>%
   theme(axis.text.x = element_text(angle = 90, hjust = 1),
         legend.position = "top") -> p
 
-ggsave("som/stan_model_effects/sr_effects.png", plot = p, dpi = 300, width = 8, height = 4.3)
+ggsave("som/stan_model_effects/sr_effects.png", plot = p, dpi = 300, width = 8, height = 4.7)
 
 both %>%
   select(source, dataset_magnitude) %>%
   unique() %>%
   pivot_wider(names_from = source, values_from = dataset_magnitude) %>%
+  View()
   mutate(org_reactivity_diff = 2^(Hamster-Human))
 
