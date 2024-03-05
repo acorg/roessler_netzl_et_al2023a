@@ -3,7 +3,7 @@ This repository holds the code for the species comparison between human and hams
 
 The repository's DOI was created with Zenodo (https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content). Please cite the publication and repository when using code from this repository.
 
-Raw data can be found in the `data` directory. The code for the analyses shown in the main manuscript can be found in the `code` directory. To obtain a titer table for antigenic map construction, execute the `excel_to_titertable.R` script. To construct maps execute the `make_map.R` script. The STAN model is stored in the `model` directory and executing the `code/model_map_magnitude_distribution.R` script saves the sampled and optimized serum and magnitude effects shown in the main manuscript and SOM.
+Raw data can be found in the `data` directory. The code for the analyses shown in the main manuscript can be found in the `code` directory. To obtain a titer table for antigenic map construction, execute the `excel_to_titertable.R` script. To construct maps execute the `make_map.R` script. The STAN model is stored in the `model` directory and executing the `code/model_map_magnitude_no_bias.R` script saves the sampled and optimized serum and magnitude effects shown in the main manuscript and SOM.
 
 SOM figures can be found in the `som` directory. 
 
